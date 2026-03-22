@@ -1,0 +1,18 @@
+/* Fichier de styles global */
+body {
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+/* style de base pour les éléments de formulaire */
+.form-input {
+    border: 1px solid #ced4da;
+}
+
+.btn-gradient {
+    background: linear-gradient(90deg, #0d6efd, #6610f2);
+    color: #fff;
+}

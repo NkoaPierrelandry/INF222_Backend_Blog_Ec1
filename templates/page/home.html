@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container my-5">
+
+    <!-- TITRE CENTRAL -->
+    <h2 class="mb-5 text-center display-5 text-primary">Dashboard des Articles</h2>
+
+    <!-- MESSAGES DE SUCCESS -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- FORMULAIRE AJOUT ARTICLE -->
+    <div class="card p-5 shadow-lg mb-5" style="border-radius: 20px; max-width: 850px; margin:auto; background-color: #f0f4f8;">
+        <h3 class="mb-4 text-center fw-bold text-dark">Ajouter un Article</h3>
+        <form method="POST" class="row g-4">
+            {% csrf_token %}
+
+            <!-- TITRE -->
+            <div class="col-md-6">
+                <input type="text" name="title" placeholder="Titre" class="form-control form-control-lg rounded-4 shadow-sm form-input" required>
+            </div>
+
+            <!-- AUTEUR -->
+            <div class="col-md-6">
+                <input type="text" name="autor" placeholder="Auteur" class="form-control form-control-lg rounded-4 shadow-sm form-input" required>
+            </div>
+
+            <!-- CONTENU -->
+            <div class="col-12">
+                <textarea name="contenu" placeholder="Contenu" class="form-control form-control-lg rounded-4 shadow-sm form-input" rows="4" required></textarea>
+            </div>
+
+            <!-- CATÉGORIE -->
+            <div class="col-md-6">
+                <input type="text" name="category" placeholder="Catégorie" class="form-control form-control-lg rounded-4 shadow-sm form-input">
+            </div>
+
+            <!-- TAGS -->
+            <div class="col-md-6">
+                <input type="text" name="tags" placeholder="Tags" class="form-control form-control-lg rounded-4 shadow-sm form-input">
+            </div>
+
+            <!-- BOUTON SUBMIT -->
+            <div class="col-12 d-grid mt-3">
+                <button type="submit" class="btn btn-gradient btn-lg fw-bold rounded-4 text-white shadow">Ajouter</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- LISTE DES ARTICLES -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% if articles %}
+            {% for article in articles %}
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0 hover-card p-3" style="border-radius: 15px; background-color:#ffffff;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title text-dark fw-bold">{{ article.title }}</h5>
+                        <p class="card-text text-secondary">{{ article.contenu|truncatewords:25 }}</p>
+                        <p class="mt-auto"><strong>Auteur:</strong> <span class="text-info">{{ article.autor }}</span></p>
+
+                        <!-- BADGE CATÉGORIE -->
+                        {% if article.category %}
+                            <span class="badge 
+                                {% if article.category == 'Tech' %} bg-info
+                                {% elif article.category == 'News' %} bg-warning text-dark
+                                {% elif article.category == 'Sport' %} bg-success
+                                {% elif article.category == 'Lifestyle' %} bg-danger
+                                {% else %} bg-primary
+                                {% endif %}">
+                                {{ article.category }}
+                            </span>
+                        {% endif %}
+
+                        <!-- BOUTON SUPPRIMER -->
+                        <form method="POST" action="{% url 'delete_article' article.id %}" class="mt-3">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger w-100 fw-bold"
+                                onclick="return confirm('Voulez-vous vraiment supprimer cet article ?')">
+                                Supprimer
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12">
+                <div class="alert alert-info text-center">
+                    Aucun article disponible. Ajoute-en un pour commencer !
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+</div>
+
+<!-- STYLES CSS -->
+<style>
+/* Hover sur cartes */
+.hover-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 1rem 2rem rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+/* Input et textarea style moderne */
+.form-input {
+    border: 1px solid #ced4da;
+    transition: all 0.3s ease;
+}
+.form-input:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 8px rgba(13,110,253,0.2);
+    outline: none;
+}
+
+/* Bouton gradient */
+.btn-gradient {
+    background: linear-gradient(90deg, #0d6efd, #6610f2);
+    border: none;
+    transition: all 0.3s ease;
+}
+.btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Card et formulaire responsive */
+@media (max-width: 768px) {
+    .form-control-lg {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+}
+</style>
+
+<!-- JS reset formulaire -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form');
+    form.addEventListener('submit', () => {
+        setTimeout(() => { form.reset(); }, 100);
+    });
+});
+</script>
+
+{% endblock %}
