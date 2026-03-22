@@ -58,14 +58,14 @@ python manage.py runserver
 ### endpoints 
       
     Méthode	Endpoint	Description	Codes HTTP
-    POST	/api/articles/	                                            Créer un article	201 Created, 400 Bad Request
-    GET	/api/articles/	                                             Lister tous les articles	200 OK
-    GET	/api/articles/{id}/	                                        Récupérer un article	200 OK, 404 Not Found
-    PUT	/api/articles/{id}/	                                        Modifier un article	200 OK, 400, 404
-    DELETE	/api/articles/{id}/	                                     Supprimer un article	204 No Content, 404
-    GET	/api/articles/search/?query=texte	                          Rechercher dans titre/contenu	200 OK
-    GET	/api/articles/?categorie=Tech	                              Filtrer par catégorie	200 OK
-    GET	/api/articles/?auteur=Pierre	                               Filtrer par auteur	200 OK
+    POST	/api/articles/	                               Créer un article	201 Created, 400 Bad Request
+    GET	/api/articles/	                                Lister tous les articles	200 OK
+    GET	/api/articles/{id}/	                           Récupérer un article	200 OK, 404 Not Found
+    PUT	/api/articles/{id}/	                           Modifier un article	200 OK, 400, 404
+    DELETE	/api/articles/{id}/	                        Supprimer un article	204 No Content, 404
+    GET	/api/articles/search/?query=texte	             Rechercher dans titre/contenu	200 OK
+    GET	/api/articles/?categorie=Tech	                 Filtrer par catégorie	200 OK
+    GET	/api/articles/?auteur=Pierre	                  Filtrer par auteur	200 OK
 
 ### Modèle de données
 
