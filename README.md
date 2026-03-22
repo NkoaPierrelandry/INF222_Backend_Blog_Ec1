@@ -58,26 +58,27 @@ python manage.py runserver
 ### endpoints 
       
     Méthode	Endpoint	Description	Codes HTTP
-    POST	/api/articles/	Créer un article	201 Created, 400 Bad Request
-    GET	/api/articles/	Lister tous les articles	200 OK
-    GET	/api/articles/{id}/	Récupérer un article	200 OK, 404 Not Found
-    PUT	/api/articles/{id}/	Modifier un article	200 OK, 400, 404
-    DELETE	/api/articles/{id}/	Supprimer un article	204 No Content, 404
-    GET	/api/articles/search/?query=texte	Rechercher dans titre/contenu	200 OK
-    GET	/api/articles/?categorie=Tech	Filtrer par catégorie	200 OK
-    GET	/api/articles/?auteur=Pierre	Filtrer par auteur	200 OK
+    POST	/api/articles/	                                            Créer un article	201 Created, 400 Bad Request
+    GET	/api/articles/	                                             Lister tous les articles	200 OK
+    GET	/api/articles/{id}/	                                        Récupérer un article	200 OK, 404 Not Found
+    PUT	/api/articles/{id}/	                                        Modifier un article	200 OK, 400, 404
+    DELETE	/api/articles/{id}/	                                     Supprimer un article	204 No Content, 404
+    GET	/api/articles/search/?query=texte	                          Rechercher dans titre/contenu	200 OK
+    GET	/api/articles/?categorie=Tech	                              Filtrer par catégorie	200 OK
+    GET	/api/articles/?auteur=Pierre	                               Filtrer par auteur	200 OK
 
 ### Modèle de données
 
     Article
     Champ	Type	Description	Validation
-    id	AutoField	Identifiant unique	Généré automatiquement
-    titre	CharField(255)	Titre de l'article	Obligatoire, non vide nomee title 
-    contenu	TextField	Contenu de l'article	Min. 10 caractères 
-    auteur	CharField(100)	Nom de l'auteur	Obligatoire nomee autor 
-    date	DateTimeField	Date de création	Générée automatiquement nomee date 
-    categorie	CharField(100)	Catégorie	Optionnel nomee category
-    tags	CharField(255)	Tags	Optionnel
+    
+    id	AutoField	Identifiant unique     	Généré automatiquement
+    titre	CharField(255)	                Titre de l'article	Obligatoire, non vide nomee title 
+    contenu	TextField	                   Contenu de l'article	Min. 10 caractères 
+    auteur	CharField(100)	               Nom de l'auteur	Obligatoire nomee autor 
+    date	DateTimeField	                  Date de création	Générée automatiquement nomee date 
+    categorie	CharField(100)	            Catégorie	Optionnel nomee category
+    tags	CharField(255)	                 Tags	Optionnel
 
  ### Exemples de requêtes
      
@@ -127,6 +128,7 @@ json
 ### Bonnes pratiques implémentées
     
     Bonne pratique	Implémentation
+    
     Validation des entrées	Dans serializers.py (titre et auteur obligatoires, contenu min. 10 caractères)
     Codes HTTP appropriés	200, 201, 400, 404, 204, 500
     Séparation des responsabilités	Modèles (models.py), vues (views.py), sérialiseurs (serializers.py)
