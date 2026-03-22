@@ -94,7 +94,7 @@ Requête :
        "tags": "django,api"
      }
 
-Réponse (201 Created) :
+# Réponse (201 Created) :
      json
      
      {
