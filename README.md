@@ -125,22 +125,21 @@ json
 ]
 
 ### Bonnes pratiques implémentées
-
-Bonne pratique	Implémentation
-Validation des entrées	Dans serializers.py (titre et auteur obligatoires, contenu min. 10 caractères)
-Codes HTTP appropriés	200, 201, 400, 404, 204, 500
-Séparation des responsabilités	Modèles (models.py), vues (views.py), sérialiseurs (serializers.py)
-Documentation API	Swagger (/swagger/)
-Recherche multi-champs	Utilisation des Q objects de Django
-Filtrage dynamique	Surcharge de get_queryset()
+    
+    Bonne pratique	Implémentation
+    Validation des entrées	Dans serializers.py (titre et auteur obligatoires, contenu min. 10 caractères)
+    Codes HTTP appropriés	200, 201, 400, 404, 204, 500
+    Séparation des responsabilités	Modèles (models.py), vues (views.py), sérialiseurs (serializers.py)
+    Documentation API	Swagger (/swagger/)
+    Recherche multi-champs	Utilisation des Q objects de Django
+    Filtrage dynamique	Surcharge de get_queryset()
 
 #### Dépendances
-txt
-
-Django==6.0.1
-djangorestframework==3.15.2
-drf-yasg==1.21.7
-requests==2.32.3
+  
+  Django==6.0.1
+  djangorestframework==3.15.2
+  drf-yasg==1.21.7
+  requests==2.32.3
 
  ### Liens utiles
 
@@ -149,10 +148,10 @@ requests==2.32.3
     Documentation Swagger : http://127.0.0.1:8000/swagger/
 
 ### Auteur
-Information	Détails
-Nom	[Pierre Landry Nkoa 
-Filière	Informatique 
-UE	INF222
+
+Nom	:Pierre Landry Nkoa 
+Filière	:Informatique 
+UE	:INF222
 
  ### Licence
 
